@@ -31,17 +31,19 @@ class Subscriber
         $sem = $em->getSharedManager();
 
         foreach($events as $eventId => $event) {
-            foreach($event as $name => $callback) {
-                $sem->attach($eventId, $name, function(EventInterface $e) use ($callback) {
-                    die(var_dump($callback, $this->serviceLocator->has($callback)));
-                    $handler = $this->serviceLocator->get($callback);
+            foreach($event as $name => $callbacks) {
+                foreach($callbacks as $callback) {
 
-                    if (!is_callable($handler)) {
-                        throw new Exception("Callback $callback if not callable");
-                    }
+                    $sem->attach($eventId, $name, function(EventInterface $e) use ($callback) {
+                        $handler = $this->serviceLocator->get($callback);
 
-                    $handler($e);
-                });
+                        if (!is_callable($handler)) {
+                            throw new \Exception("Callback $callback if not callable");
+                        }
+
+                        $handler($e);
+                    });
+                }
             }
         }
     }
