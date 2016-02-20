@@ -38,7 +38,7 @@ It just recommendation (or team rule) - describe all your handlers in one place 
         // ...
         'EventIdentifier' => [
             'EventName' => [
-                'Callback1',
+                'Callback1', // can be invokable class
                 'Callback2',
                 // ...
                 'CallbackN',
