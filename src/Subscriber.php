@@ -31,11 +31,11 @@ class Subscriber
         $em = $this->serviceLocator->get('EventManager');
         $sem = $em->getSharedManager();
 
-        foreach($events as $eventId => $event) {
-            foreach($event as $name => $callbacks) {
-                foreach($callbacks as $callback) {
+        foreach ($events as $eventId => $event) {
+            foreach ($event as $name => $callbacks) {
+                foreach ($callbacks as $callback) {
 
-                    $sem->attach($eventId, $name, function(EventInterface $e) use ($callback) {
+                    $sem->attach($eventId, $name, function (EventInterface $e) use ($callback) {
                         $handler = $this->serviceLocator->get($callback);
 
                         if (!is_callable($handler)) {
