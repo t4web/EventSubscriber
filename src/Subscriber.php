@@ -5,6 +5,7 @@ namespace T4web\EventSubscriber;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\EventInterface;
+use Zend\EventManager\Exception\InvalidCallbackException;
 
 class Subscriber
 {
@@ -38,7 +39,7 @@ class Subscriber
                         $handler = $this->serviceLocator->get($callback);
 
                         if (!is_callable($handler)) {
-                            throw new \Exception("Callback $callback if not callable");
+                            throw new InvalidCallbackException("Callback $callback if not callable");
                         }
 
                         $handler($e);
