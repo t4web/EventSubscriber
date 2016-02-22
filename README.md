@@ -2,6 +2,22 @@
 
 ZF2 Module. One place for manage application events.
 
+# Instalation
+
+Add to your `composer.json`:
+```json
+"t4web/event-subscriber": "^0.0"
+```
+
+And to your `config/application.config.php`:
+```php
+'modules' => [
+    // ...
+    'T4web\EventSubscriber',
+    // ...
+],
+```
+
 # Problem
 
 As usual your event handlers everywhere, and you (or team member) don't know what will be executed
