@@ -42,7 +42,7 @@ class Subscriber
                             throw new InvalidCallbackException("Callback $callback if not callable");
                         }
 
-                        $handler($e);
+                        return $handler($e);
                     });
                 }
             }
