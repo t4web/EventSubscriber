@@ -6,7 +6,7 @@ ZF2 Module. One place for manage application events.
 
 Add to your `composer.json`:
 ```json
-"t4web/event-subscriber": "^0.0"
+"t4web/event-subscriber": "~1.0.0"
 ```
 
 And to your `config/application.config.php`:
