@@ -34,16 +34,22 @@ class Subscriber
         foreach ($events as $eventId => $event) {
             foreach ($event as $name => $callbacks) {
                 foreach ($callbacks as $callback) {
+                    $handlerName = $callback;
+                    $priority = 1;
+                    if (is_array($callback)) {
+                        $handlerName = $callback['handler'];
+                        $priority = $callback['priority'];
+                    }
 
-                    $sem->attach($eventId, $name, function (EventInterface $e) use ($callback) {
-                        $handler = $this->serviceLocator->get($callback);
+                    $sem->attach($eventId, $name, function (EventInterface $e) use ($handlerName) {
+                        $handler = $this->serviceLocator->get($handlerName);
 
                         if (!is_callable($handler)) {
-                            throw new InvalidCallbackException("Callback $callback if not callable");
+                            throw new InvalidCallbackException("Callback $handlerName if not callable");
                         }
 
                         return $handler($e);
-                    });
+                    }, $priority);
                 }
             }
         }
