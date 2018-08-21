@@ -2,7 +2,7 @@
 
 namespace T4web\EventSubscriber;
 
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
 use Zend\EventManager\EventManager;
 use Zend\EventManager\EventInterface;
 use Zend\EventManager\Exception\InvalidCallbackException;
@@ -10,14 +10,14 @@ use Zend\EventManager\Exception\InvalidCallbackException;
 class Subscriber
 {
     /**
-     * @var ServiceLocatorInterface
+     * @var ContainerInterface
      */
     private $serviceLocator;
 
     /**
-     * @param ServiceLocatorInterface $serviceLocator
+     * @param ContainerInterface $serviceLocator
      */
-    public function __construct(ServiceLocatorInterface $serviceLocator)
+    public function __construct(ContainerInterface $serviceLocator)
     {
         $this->serviceLocator = $serviceLocator;
     }
